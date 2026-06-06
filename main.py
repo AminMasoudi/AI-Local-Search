@@ -28,12 +28,12 @@ def run_algorithms(world, initial_state, algorithm_classes):
     for algorithm_class in algorithm_classes:
         # Format class name for presentation (e.g., HillClimbing -> Hill Climbing)
 
-        names.append(algorithm_class.__name__)
+        names.append(algorithm_class.__repr_name__)
 
         # Instantiate the algorithm
         algorithm_instance = algorithm_class(world)
 
-        print(f"\nRunning {algorithm_class.__name__}...")
+        print(f"\nRunning {algorithm_class.__repr_name__}...")
 
         best_state, best_cost, evaluation, states_history = algorithm_instance.run(
             initial_state

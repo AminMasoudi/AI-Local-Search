@@ -6,6 +6,7 @@ from search.state import State
 
 
 class HillClimbing(LocalSearchBase):
+    __repr_name__ = "Hill Climbing"
     def run(self, initial_state, **kwargs):
         """
         TODO: Implement the Hill Climbing algorithm.

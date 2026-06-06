@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 import numpy as np
 
 
@@ -46,6 +48,7 @@ class GridWorld:
             max_sensors
         )
 
+    @lru_cache
     def is_valid_position(self, x, y):
 
         if x < 0 or x >= self.rows:
@@ -58,7 +61,8 @@ class GridWorld:
             return False
 
         return True
-
+    
+    @lru_cache
     def get_targets(self):
 
         targets = []
