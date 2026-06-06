@@ -65,7 +65,6 @@ class SimulatedAnnealing(LocalSearchBase):
             self.state_history.append(list(current.locations))
             cost_history.append(current_score)
 
-            # cool down
             t *= cooling
 
         return (

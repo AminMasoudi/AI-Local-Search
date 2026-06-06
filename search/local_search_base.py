@@ -23,7 +23,7 @@ class LocalSearchBase:
         """
         return 100 - score
 
-    def get_neighbor(self, state: State) -> set[State]:
+    def get_neighbor(self, state: State, s_range: int = 1) -> set[State]:
         """
         TODO: Implement the neighbor generation function.
 
@@ -45,11 +45,12 @@ class LocalSearchBase:
                     State(
                         locations=frozenset(other_locations.union({new_loc})),
                     )
-                    for new_loc in State.covered_point(x, y, self.world.sensor_range)
+                    for new_loc in State.covered_point(x, y, s_range)
                     if new_loc not in other_locations
                     and self.world.is_valid_position(new_loc[0], new_loc[1])
                 ]
             )
+            new_neigh_states.add(State(locations=frozenset(other_locations)))
             new_neigh_states = set(
                 filter(
                     lambda new: list(new.locations) not in self.state_history,
@@ -63,9 +64,7 @@ class LocalSearchBase:
                 set(filter(lambda loc: loc not in state.locations, self.grid_world())),
                 key=lambda loc: self.point_heuristic(loc[0], loc[1], state),
             )
-            neigh_states.add(
-                State(locations=state.locations.union({new_sensor_loc}))
-            )
+            neigh_states.add(State(locations=state.locations.union({new_sensor_loc})))
         return neigh_states
 
     @staticmethod

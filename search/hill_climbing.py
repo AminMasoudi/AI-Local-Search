@@ -34,7 +34,7 @@ class HillClimbing(LocalSearchBase):
         cost_history = [self.heuristic(current)]
         i = 0
         while i < 100:
-            successors = self.get_neighbor(current)
+            successors = self.get_neighbor(current, s_range=self.world.sensor_range)
             new_state = max(successors, key=lambda x: self.heuristic(x))
             if cost_history[-1] > self.heuristic(new_state) or cost_history[-1] == 100:
                 break

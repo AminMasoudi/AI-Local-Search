@@ -5,7 +5,7 @@ from env.grid_world import GridWorld
 
 @dataclass(frozen=True)
 class State:
-    locations: tuple[int, int]
+    locations: frozenset[tuple[int, int]]
 
     def covered(self, world: GridWorld) -> set[tuple[int, int]]:
         covered_locations = set()
